@@ -1,0 +1,75 @@
+A.L.V.I. Bot README file
+=========================
+
+
+Descrizione
+===========
+
+A.L.V.I. e' nato per essere un semplice, ma modulare, bot vocale, con lo scopo di elaborare e 
+fornire le informazioni che piu' spesso vengono consultate sulla rete.
+Il suo scopo finale e' quello di essere in grado di recuperare informazioni dalla rete, 
+di eseguire le operazioni desiderate, interpretando direttamente il linguaggio naturale 
+attraverso un sistema di riconoscimento vocale e di fornire tali informazioni
+tramite un motore vocale.
+
+
+Caratteristiche:
+========================
+
+Al momento questo e' quanto e' stato implementato:
+
+- Sintesi Vocale tramite Festival
+- Supporto per caselle di posta multiple (con protocollo IMAP)
+- Supporto per Feed Rss multipli
+- Manager multitasking per il controllo di mails e feeds intervalli regolari
+- Una console interattiva con un motore AIML.
+
+Il codice e' molto lontano dall'essere stabile, leggibile o
+elegante, ma come si dice: "Prima fallo funzionare, poi miglioralo" :-)
+
+Per chiarimenti, aiuto, supporto, consigli, richieste e quant'altro
+scrivetemi su: <cosimo.iaia@gmail.com>
+
+
+
+Requisiti
+=========
+Alvi necessita che i seguenti pacchetti siano installati:
+python-2.6
+festival-cmu
+festvox-itapc16k
+python-feedparser
+python-formencode
+
+Una buona idea e' quella di installare anche il motore di MBrola che risulta
+essere piu' realistico nella resa vocale. Sul web vi sono molte guide con 
+svariati approcci, e alcune voci differenti.
+
+
+Installazione
+=============
+Dopo essersi assicurati del corretto funzionamento di festival,
+e' sufficiente modificare il file di configurazione di esempio, con i propri dati, 
+spostarlo nella propria home directory come ".alvi.cfg" e lanciare semplicemente
+Alvi.py.
+Se tutto funziona correttamente, sentirete un messaggio di caricamento e di benvenuto
+e si aprira' la console AIML con la quale potrete interagire (poco per ora) con Alvi.
+
+L'interazione da console e' limitata al set AIML (http://www.alicebot.org/aiml.html)
+per ora molto scarno. Oltre a cio' e' possibile eseguire un reload dinamico del set, tramite il 
+comando reload e uscire definitivamente con quit.
+
+
+Licence
+=======
+A.L.V.I. Bot e' rilasciato sotto la GNU Public Licence (GPLv3).
+
+
+Ringraziamenti e Credits:
+========================
+- Dr. Richard S. Wallace e la A.L.I.C.E. Foundation per l'AIML (http://www.alicebot.org/aiml.html)
+- Cort Stratton (cort@users.sourceforge.net) per PyAIML
+- Chris King <squirrel at wpi edu> per PyFest
+
+Ed ovviamente a tutta la comunita' GNU/Linux e Python, senza le quali nulla di cio' esisterebbe.
+
