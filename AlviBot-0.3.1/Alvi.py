@@ -170,7 +170,7 @@ class Alvi:
 		return True
 
 
-	def _google_say(text):
+	def _google_say(self, text):
 		try:
 			google_speech.Speech(text, self.lang).play(None)
 		except:
@@ -182,16 +182,13 @@ class Alvi:
 		try:
 			import festival
 			import sys,time
-			import speech_recognition as sr
-			import google_speech
+#			import google_speech
 		except:
 			print "something fucky"
 
 		self.lang='en'
 
-		self.loadConf(confFile)
-
-		if self.conf.error: return
+		self.use_festival=True
 
 		if self.use_festival:	
 			self.festival = festival.open()
@@ -199,6 +196,8 @@ class Alvi:
 		else:
 			self.say = self._google_say
 
+
+		self.loadConf(confFile)
 		self.say("I am loading")
 
 		
@@ -209,7 +208,7 @@ class Alvi:
 		self.loadCommandSet()
 
 
-	def run():
+	def run(self):
 
 		print("Alvi Bot version 0.3.1")
 		alvi.start_tasks()
@@ -217,6 +216,9 @@ class Alvi:
 
 		cont = True
 		
+		import speech_recognition as sr
+
+		r = sr.Recognizer()
 		while cont:
 			with sr.Microphone() as source:
 				audio = r.listen(source)
