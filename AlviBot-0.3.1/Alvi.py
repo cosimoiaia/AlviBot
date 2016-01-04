@@ -124,7 +124,7 @@ class Alvi:
 
 	def die(self):
 		self.sched.stop()		
-		self.say("ahia, non vale")
+		self.say("ouch, that is not fair")
 
 		for mail in self.mails:
 			self.conf.set(mail.getName(), 'lastid', mail.getLastId())	
@@ -175,7 +175,7 @@ class Alvi:
 		
 		self.festival = festival.open()
 		self.say = self.festival.say
-		self.say("Sto caricando")
+		self.say("I am loading")
 
 		
 		self.loadConf(confFile)
@@ -184,7 +184,7 @@ class Alvi:
 
 		self.loadBrain()
 
-		self.say("Fatto. pronto e attivo")
+		self.say("I have been uploaded. I am lock and loaded")
 		self.loadCommandSet()
 
 	
@@ -192,18 +192,27 @@ class Alvi:
 if __name__ == "__main__":
 	alvi = Alvi()
 	try:
-		import sys
+		import sys,time
+		import speech_recognition as sr
 
-		print("Alvi Bot versione 0.3.1")
+		print("Alvi Bot version 0.3.1")
 		alvi.start_tasks()
+		r = sr.Recognizer()
 
+		time.sleep(2)
 		cont = True
+		
 		while cont:
-			#print 'Alvi> ',
-			a=raw_input('Alvi> ')
-			a=a.strip()
-			if not a == '': 
-				cont = alvi.parse_command(a)
+			with sr.Microphone() as source:
+				audio = r.listen(source)
+			try:
+				a=r.recognize_google(audio)
+				print "You: "+a
+				a=a.strip()
+				if not a == '': 
+					cont = alvi.parse_command(a)
+			except:
+				print "mmmm...."
 
 	except KeyboardInterrupt:
 		alvi.parse_command('quit')

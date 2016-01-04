@@ -19,7 +19,7 @@ Interpreter Version Info: <version/>
 <!-- only allow this operation if the "secure" predicate is set to yes. -->
 <condition name="secure">
     <li value="yes">
-        <learn>*.aiml</learn>
+        <learn>brain/*.aiml</learn>
     </li>
     <li>You are not permitted to load AIML sets.</li>
 </condition>
