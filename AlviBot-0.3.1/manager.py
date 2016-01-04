@@ -83,7 +83,7 @@ if __name__ == "__main__":
 	import sys
 	
 	m = Manager()
-	m.enqueue(5,f, ([str("5 secondi")]))
+	m.enqueue(5,f, ([str("5 seconds")]))
 
 	m.start()
 

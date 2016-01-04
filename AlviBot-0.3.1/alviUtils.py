@@ -20,15 +20,15 @@ import string,unicodedata
 transform_table = {
 	'<': ' ',
 	'>': ' ',
-	'+': ' piu ',
-	'-': ' meno ',
+	'+': ' plus ',
+	'-': ' minus ',
 	'#': ' ',
-	'$': ' dollaro ',
+	'$': ' dollar ',
 	'^': ' ',
 	'&': ' e ',
 	'(': ',',
 	')': ',',
-	'=':' uguale ',
+	'=':' equals ',
 	'_': ' ',
 	'*': ' ',
 	'/': ' ',
@@ -37,7 +37,7 @@ transform_table = {
 	'.': ' . ',
 	'"': ' ',
 	'~': ' ',
-	'%': ' per cento ',
+	'%': ' percent ',
 	'^':' '
 
 }

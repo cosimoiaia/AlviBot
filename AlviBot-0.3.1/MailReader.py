@@ -78,7 +78,7 @@ class MailReader:
 
 			conn.login(self.username, self.passwd)
 		except:
-			message = "Non sono riuscito a connettermi a" +self.name
+			message = "I am unable to connect to " +self.name
 			self.log.warning(message)
 			self.say(message)
 			raise RuntimeError, "Cannot connect to server"
@@ -86,7 +86,7 @@ class MailReader:
 		code = conn.select('INBOX')[0]
 	
 		if code != 'OK':
-			message="Errore: Non ho trovato la casella di posta"
+			message="ERROR: Mailbox not found!!"
 			self.say(message)
 			self.log.warning(message)
 			raise RuntimeError, "Failed to select inbox"
@@ -96,7 +96,7 @@ class MailReader:
 		if code == 'OK':
 			msgid_list= data[0].split()
 		else:
-			message="Errore: non trovo gli I DDI dei messaggi"
+			message="ERROR: messages DDI not found"
 			self.say(message)	
 			self.log.warning(message)
 			raise RuntimeError, "Failed to get message IDs"
@@ -132,13 +132,13 @@ class MailReader:
 					# old-formed From. i.e.: <sender@mail.com>
 					From = alviUtils.str_to_hlf(From_[0])
 			
-				digest = From + " ti scrive: " + alviUtils.str_to_hlf(mail.get('Subject'))
+				digest = From + " writes you: " + alviUtils.str_to_hlf(mail.get('Subject'))
 				self.log.info(self.name+': '+digest)
 				self.say(digest)
 
 		
 			else:
-				message="Errore: Non ho trovato il messaggio"
+				message="ERROR: could not retrieve msg"
 				self.log.warning(message)
 				say(message)
 				raise RuntimeError, "could not retrieve msg"

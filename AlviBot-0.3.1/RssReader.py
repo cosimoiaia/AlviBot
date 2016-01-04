@@ -39,7 +39,7 @@ class RssReader:
 
 	def read(self):
 		if self.address == "none":
-			message= self.name + " non ha un indirizzo valido. controlla per favore"
+			message= self.name + " is not a valid address."
 			self.log.info(message)
 			self.say(message)
 		else:

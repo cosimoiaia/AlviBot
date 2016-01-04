@@ -34,27 +34,27 @@ class config:
 		try:
 			self.config.readfp(open(self.config_file))
 		except:
-			print "Attenzione, non ho trovato nessuna configurazione! Controlla per favore"
+			print "WARNING: no configuration files found!"
 			self.error=True
 
 	def save(self):
 		try:
 			with open(self.config_file, 'wb') as configfd: self.config.write(configfd)
 		except:
-			print "Errore, non riesco a salvere il file di configurazione!!!"
+			print "ERROR: can't save configuration file!"
 
 	def set(self, section, option, value):
 		try:
 			self.config.set(section,option,value)
 		except:
-			print "Errore, sezione non esistente o tipo sbagliato di opzione"
+			print "ERROR: non-existing section or wrong option"
 
 	def getConf(self, section):
 		if self.config.has_section(section):
 			confdict = dict(self.config.items(section))
 			return confdict
 		else:
-			print "sezione " + section + " non esistente"
+			print "the section " + section + " doesn't exists"
 			return []
 
 	def error(self):

@@ -25,7 +25,7 @@ import logging
 import readline
 
 
-### Classe di appoggio per il completamento della commandLine
+### Commandline completion
 class Completer:
 	def __init__(self, words):
 		self.words = words
@@ -53,12 +53,12 @@ class Alvi:
 		self.mboxes = []
 		self.feeds = []
 
-		# Carichiamo tutte le configurazioni
+		# Loading configurations
 		self.conf.load()
 		if self.conf.error:
 			return;
 
-		### Inizializzo il sistema di Log.
+		### Initializing log system
 		self.log = logging.getLogger("Alvi")
 		self.log.setLevel(logging.INFO)
 
@@ -69,8 +69,8 @@ class Alvi:
 
 
 
-		### Inizializzo gli oggetti relativi ai FeedRss da leggere e alle mail in base alle conf
-		### e li passo allo Scheduler/Manager per essere eseguiti agli intervalli prestabiliti
+		### Initializing objects for FeedRss and mail
+		### and setting them up in the Scheduler/Manager to be run at intervals.
 		mboxes_conf= self.conf.getConf('Mail')
 		feeds_conf= self.conf.getConf('Feed')
 
@@ -96,9 +96,9 @@ class Alvi:
 
 
 	def loadBrain(self):
-		# Inizializzo la base di conoscenza aiml
+		# Initializing aiml Brain
 
-		self.log.info("Carico la base di conoscenza aiml")
+		self.log.info("Loading Aiml Brain")
 		self.brain = aimlBrain.AlviBrain()
 
 	def start_tasks(self):
@@ -157,16 +157,16 @@ class Alvi:
 	
 		if self.conf.error: self.die()
 	
-		self.log.info("Utente: "+command)
+		self.log.info("User: "+command)
 		if command == 'quit':
 			self.die()
 			return False
 		elif self.cmdSet.has_key(command):
-			self.log.info("Alvi: eseguo "+command)
+			self.log.info("Alvi: running "+command)
 			self.cmdSet.get(command)()
 		else:
 			response = self.brain.answer(command)
-			self.log.info("Alvi Risponde: "+response)
+			self.log.info("Alvi says: "+response)
 			self.say(response)
 		return True
 
@@ -184,8 +184,38 @@ class Alvi:
 
 		self.loadBrain()
 
-		self.say("I have been uploaded. I am lock and loaded")
+		self.say("I have been uploaded sir, ready to go.")
 		self.loadCommandSet()
+		try:
+			import sys,time
+			import speech_recognition as sr
+			import google_speech
+		except:
+			print "something fucky"
+
+
+
+	def run():
+
+		print("Alvi Bot version 0.3.1")
+		alvi.start_tasks()
+
+
+		cont = True
+		
+		while cont:
+			with sr.Microphone() as source:
+				audio = r.listen(source)
+			try:
+				a=r.recognize_google(audio)
+				print "You: "+a
+				a=a.strip()
+				if not a == '': 
+					cont = alvi.parse_command(a)
+			except:
+				print "mmmm...."
+
+		
 
 	
 
@@ -194,6 +224,7 @@ if __name__ == "__main__":
 	try:
 		import sys,time
 		import speech_recognition as sr
+		import google_speech
 
 		print("Alvi Bot version 0.3.1")
 		alvi.start_tasks()
