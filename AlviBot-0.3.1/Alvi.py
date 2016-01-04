@@ -19,7 +19,6 @@ import MailReader
 import RssReader
 import manager
 import aimlBrain
-import festival
 import os
 import logging
 import readline
@@ -171,28 +170,43 @@ class Alvi:
 		return True
 
 
-	def __init__(self, confFile="~/.alvi.cfg"):
-		
-		self.festival = festival.open()
-		self.say = self.festival.say
-		self.say("I am loading")
-
-		
-		self.loadConf(confFile)
-
-		if self.conf.error: return
-
-		self.loadBrain()
-
-		self.say("I have been uploaded sir, ready to go.")
-		self.loadCommandSet()
+	def _google_say(text):
 		try:
+			google_speech.Speech(text, self.lang).play(None)
+		except:
+			self.log.info("google speech is somehow broken")
+			print "Mmmmm... can't talk right now!"
+
+	def __init__(self, confFile="~/.alvi.cfg"):
+
+		try:
+			import festival
 			import sys,time
 			import speech_recognition as sr
 			import google_speech
 		except:
 			print "something fucky"
 
+		self.lang='en'
+
+		self.loadConf(confFile)
+
+		if self.conf.error: return
+
+		if self.use_festival:	
+			self.festival = festival.open()
+			self.say = self.festival.say
+		else:
+			self.say = self._google_say
+
+		self.say("I am loading")
+
+		
+
+		self.loadBrain()
+
+		self.say("I have been uploaded sir, ready to go.")
+		self.loadCommandSet()
 
 
 	def run():
@@ -221,29 +235,31 @@ class Alvi:
 
 if __name__ == "__main__":
 	alvi = Alvi()
-	try:
-		import sys,time
-		import speech_recognition as sr
-		import google_speech
+	alvi.run()
 
-		print("Alvi Bot version 0.3.1")
-		alvi.start_tasks()
-		r = sr.Recognizer()
-
-		time.sleep(2)
-		cont = True
-		
-		while cont:
-			with sr.Microphone() as source:
-				audio = r.listen(source)
-			try:
-				a=r.recognize_google(audio)
-				print "You: "+a
-				a=a.strip()
-				if not a == '': 
-					cont = alvi.parse_command(a)
-			except:
-				print "mmmm...."
-
-	except KeyboardInterrupt:
-		alvi.parse_command('quit')
+#	try:
+#		import sys,time
+#		import speech_recognition as sr
+#		import google_speech
+#
+#		print("Alvi Bot version 0.3.1")
+#		alvi.start_tasks()
+#		r = sr.Recognizer()
+#
+#		time.sleep(2)
+#		cont = True
+#		
+#		while cont:
+#			with sr.Microphone() as source:
+#				audio = r.listen(source)
+#			try:
+#				a=r.recognize_google(audio)
+#				print "You: "+a
+#				a=a.strip()
+#				if not a == '': 
+#					cont = alvi.parse_command(a)
+#			except:
+#				print "mmmm...."
+#
+#	except KeyboardInterrupt:
+#		alvi.parse_command('quit')
