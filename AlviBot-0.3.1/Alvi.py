@@ -169,7 +169,7 @@ class Alvi:
 		return True
 
 
-	def _google_say(text):
+	def _google_say(self, text):
 		try:
 			google_speech.Speech(text, self.lang).play(None)
 		except:
@@ -188,6 +188,8 @@ class Alvi:
 		self.speech = speech()
 		self.say = self.speech.say
 
+
+		self.loadConf(confFile)
 		self.say("I am loading")
 
 		
@@ -207,6 +209,9 @@ class Alvi:
 
 		cont = True
 		
+		import speech_recognition as sr
+
+		r = sr.Recognizer()
 		while cont:
 			with sr.Microphone() as source:
 				audio = r.listen(source)
