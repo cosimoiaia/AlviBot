@@ -129,7 +129,6 @@ class Alvi:
 			self.conf.set(mail.getName(), 'lastid', mail.getLastId())	
 
 		self.conf.save()
-		self.festival.close()
 	
 
 	def help(self):
@@ -180,28 +179,19 @@ class Alvi:
 	def __init__(self, confFile="~/.alvi.cfg"):
 
 		try:
-			import festival
+			from speech import speech
 			import sys,time
 			import speech_recognition as sr
-			import google_speech
 		except:
 			print "something fucky"
 
-		self.lang='en'
-
-		self.loadConf(confFile)
-
-		if self.conf.error: return
-
-		if self.use_festival:	
-			self.festival = festival.open()
-			self.say = self.festival.say
-		else:
-			self.say = self._google_say
+		self.speech = speech()
+		self.say = self.speech.say
 
 		self.say("I am loading")
 
 		
+		self.loadConf(confFile)
 
 		self.loadBrain()
 
@@ -209,7 +199,7 @@ class Alvi:
 		self.loadCommandSet()
 
 
-	def run():
+	def run(self):
 
 		print("Alvi Bot version 0.3.1")
 		alvi.start_tasks()
