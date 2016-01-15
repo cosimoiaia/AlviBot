@@ -10,7 +10,7 @@ listen to what you say and give you an appropriate response if needed.
 Status
 ======
 
-This project is currently under development, so far we have working implementation of:
+This project is currently under development, so far we have working implementation for:
 
 - Speech Recognition (pocketsphinx/google voice)
 - Speech Synthesis (Festival, espeak)
@@ -23,7 +23,7 @@ Coming Next:
 - Improved Speech synthesys from external services (Google translate/Amazon)
 - AIML 2.0
 - FaceRecognition and GestureRecognition (OpenCV)
-- 
+- Event driven scheduler
 
 Licence
 =======
