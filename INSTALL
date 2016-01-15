@@ -1,0 +1,16 @@
+A.L.V.I. Bot Installation file
+=========================
+
+
+Requirements
+============
+Alvi needs festival or espeak to be installed and properly working.
+A good idea is to install the MBrola Italian Voice too.
+
+
+Installation
+============
+Modify the 'alvi.cfg' included in this archive for your needs, 
+put it into your home, calling it '.alvi.cgf', launch Alvi and be annoyed by his blabbing.
+(You might want to have a look at the speech code, in case you have trouble with festival, 
+this will be fixed in the next releases)

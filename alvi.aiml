@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<aiml xmlns="http://alicebot.org/2001/AIML-1.0.1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.1" xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+<category>
+	<pattern>
+		CHI SEI
+	</pattern>
+	<template>
+		<random>
+			<li>Io sono Alvi.</li>
+			<li>Io mi chiamo Alvi.</li>
+			<li>Il mio nome e' Alvi</li>
+			<li>Molti mi chiamano Alvi.</li>
+			<li>Puoi chiamarmi Alvi.</li>
+		</random>
+	</template>
+</category>
+<category>
+	<pattern>
+		CIAO 
+	</pattern>
+	<template>
+		<random>
+			<li>buongiorno a te</li>
+			<li>Ehila, tutto o k ?</li>
+			<li>Ciao a te</li>
+		</random>
+	</template>
+</category>
+<category>
+	<pattern>
+		CIAO *
+	</pattern>
+	<template><srai>ciao<star/></srai></template>
+</category>
+<category>
+	<pattern>
+		COME TI CHIAMI
+	</pattern>
+	<template><srai>chi sei<star/></srai></template>
+</category>
+</aiml>
