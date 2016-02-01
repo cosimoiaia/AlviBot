@@ -203,7 +203,7 @@ class Alvi:
 
 	def run(self):
 
-		print("Alvi Bot version 0.3.1")
+		print("Alvi Bot version 0.5.0")
 		alvi.start_tasks()
 
 
@@ -212,6 +212,9 @@ class Alvi:
 		import speech_recognition as sr
 
 		r = sr.Recognizer()
+		with sr.Microphone() as source:
+			r.adjust_for_ambient_noise(source)
+
 		while cont:
 			with sr.Microphone() as source:
 				audio = r.listen(source)
