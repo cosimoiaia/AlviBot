@@ -22,6 +22,7 @@ import aimlBrain
 import os
 import logging
 import readline
+import sys,time
 
 
 ### Commandline completion
@@ -169,21 +170,16 @@ class Alvi:
 		return True
 
 
-	def _google_say(self, text):
-		try:
-			google_speech.Speech(text, self.lang).play(None)
-		except:
-			self.log.info("google speech is somehow broken")
-			print "Mmmmm... can't talk right now!"
-
 	def __init__(self, confFile="~/.alvi.cfg"):
 
 		try:
 			from speech import speech
-			import sys,time
+		except:
+			print "Speech Syntesys not found!!!"
+		try:
 			import speech_recognition as sr
 		except:
-			print "something fucky"
+			print "Speech Recognition not Found!!!!"
 
 		self.speech = speech()
 		self.say = self.speech.say
@@ -199,6 +195,9 @@ class Alvi:
 
 		self.say("I have been uploaded sir, ready to go.")
 		self.loadCommandSet()
+		# DirtyFix for stderr
+		os.close(2)
+
 
 
 	def run(self):
