@@ -1,4 +1,16 @@
+python-pyaudio
+
+SPEECH SYNTESIS:
+festival/espeak
+
+RSSReader:
 python-feedparser
 python-formencode
+
+
+SPEECH RECOGNITION:
+python-pocketsphinx
+pocketsphinx-hmm-en-hub4wsj 
+pocketsphinx-hmm-en-tidigits
 python-pip
 SpeechRecognition (pip)
